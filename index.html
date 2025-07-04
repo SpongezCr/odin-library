@@ -9,8 +9,27 @@
 </head>
 <body>
     <div class="container">
-        
+
     </div>
     
+    <button id="open-button">Add New Book</button>
+
+    <dialog>
+        <form method="dialog">
+            <label>
+                <div>
+                    Title: <input type="text" id="title">
+                </div>
+                <div>
+                    Author: <input type="text" id="author"> <br>
+                </div>
+                <div>
+                    Number of pages: <input type="number" id="pages"> <br>
+                </div>
+            </label>
+            <button type="submit" id="submit-button">Add Book</button>
+            <button id="close-button" formmethod="dialog">Cancel</button>
+        </form>
+    </dialog>
 </body>
 </html>
