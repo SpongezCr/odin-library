@@ -1,23 +1,25 @@
 'use strict';
 
+class Book {
+    constructor(title, author, numOfPages, haveRead) {
+        this.id = crypto.randomUUID();
+        this.title = title;
+        this.author = author;
+        this.numOfPages = numOfPages;
+        this.haveRead = haveRead;
+    }
+
+    toggleRead() {
+        this.haveRead = !this.haveRead;
+    }
+
+    info() {
+        return `${this.title} by ${this.author}, ${this.numOfPages} pages, ${this.haveRead ? "already read" : "not read yet"}`;
+    }    
+
+}
+
 let myLibrary = [];
-
-function Book(title, author, numOfPages, haveRead) {
-    if (!new.target) throw Error("Need to use 'new' operator!");
-    this.id = crypto.randomUUID();
-    this.title = title;
-    this.author = author;
-    this.numOfPages = numOfPages;
-    this.haveRead = haveRead;
-}
-
-Book.prototype.toggleRead = function () {
-    this.haveRead = !this.haveRead;
-}
-
-Book.prototype.info = function () {
-    return `${this.title} by ${this.author}, ${this.numOfPages} pages, ${this.haveRead ? "already read" : "not read yet"}`;
-}
 
 function addBookToLibrary(title, author, numOfPages, haveRead) {
     myLibrary.push(new Book(title, author, numOfPages, haveRead));
