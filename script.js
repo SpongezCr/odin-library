@@ -16,7 +16,6 @@ class Book {
     info() {
         return `${this.title} by ${this.author}, ${this.numOfPages} pages, ${this.haveRead ? "already read" : "not read yet"}`;
     }    
-
 }
 
 let myLibrary = [];
@@ -79,17 +78,46 @@ const dialog = document.querySelector("dialog");
 const openButton = document.querySelector("#open-button");
 const closeButton = document.querySelector('#close-button');
 const submitButton = document.querySelector('#submit-button')
+const form = dialog.querySelector("form");
 
-const inputs = dialog.querySelectorAll('input');
 
 openButton.addEventListener('click', () => dialog.showModal());
+closeButton.addEventListener('click', () => dialog.close());
 
-submitButton.addEventListener('click', (e) => {
+form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const inputArray = Array.from(inputs).map(item => item.value);
-    addBookToLibrary(inputArray[0], inputArray[1], inputArray[2], false);
+    const titleInput = form.querySelector("#title");
+    const authorInput = form.querySelector("#author");
+    const pageInput = form.querySelector("#pages");
+
+    if (titleInput.validity.valueMissing){
+        titleInput.setCustomValidity("Title is required.");
+        titleInput.reportValidity();    
+        return;
+    }
+    if (authorInput.validity.valueMissing){
+        authorInput.setCustomValidity("Author is required.");
+        authorInput.reportValidity();
+        return;
+    }
+    if (pageInput.validity.valueMissing){
+        pageInput.setCustomValidity("Pages is required.");
+        pageInput.reportValidity();
+        return;
+    }
+
+    addBookToLibrary(titleInput.value, authorInput.value, pageInput.value, false);
     displayBooks();
     dialog.close();
-    document.querySelector('form').reset();
+    form.reset();
 })
+
+
+// form.addEventListener('submit', (e) => {
+//     e.preventDefault();
+
+//     if (titleInput.validity.valueMissing)
+//         titleInput.setCustomValidity("Title is required.");
+
+// })
 

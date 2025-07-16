@@ -15,20 +15,20 @@
     <button id="open-button">Add New Book</button>
 
     <dialog>
-        <form method="dialog">
+        <form method="dialog" novalidate>
             <label>
                 <div>
-                    Title: <input type="text" id="title">
+                    Title: <input type="text" id="title" required>
                 </div>
                 <div>
-                    Author: <input type="text" id="author"> <br>
+                    Author: <input type="text" id="author" required> <br>
                 </div>
                 <div>
-                    Number of pages: <input type="number" id="pages"> <br>
+                    Number of pages: <input type="number" id="pages" required> <br>
                 </div>
             </label>
             <button type="submit" id="submit-button">Add Book</button>
-            <button id="close-button" formmethod="dialog">Cancel</button>
+            <button type="button" id="close-button" formmethod="dialog">Cancel</button>
         </form>
     </dialog>
 </body>
